@@ -1,0 +1,390 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background: #ffffff;
+    color: #17233c;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.top-header {
+    min-height: 116px;
+    background: #2854a5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 42px;
+    color: #ffffff;
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brand-icon {
+    width: 55px;
+    height: 55px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-icon lightning-icon {
+    --slds-c-icon-color-foreground-default: #2854a5;
+}
+
+.brand-title {
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.brand-subtitle {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 17px;
+}
+
+.user-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar lightning-icon {
+    --slds-c-icon-color-foreground-default: #2854a5;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.main-container {
+    max-width: 1290px;
+    margin: 46px auto;
+    padding: 0 20px;
+}
+
+
+/* =========================
+   WELCOME CARD
+========================= */
+
+.welcome-card {
+    min-height: 143px;
+    background: #f5f8fd;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    padding: 28px 60px;
+}
+
+.welcome-icon {
+    width: 110px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-icon lightning-icon {
+    --slds-c-icon-color-foreground-default: #2b62b8;
+}
+
+.welcome-content {
+    margin-left: 35px;
+}
+
+.welcome-content h1 {
+    margin: 0;
+    font-size: 29px;
+    color: #101d38;
+}
+
+.welcome-content p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+
+/* =========================
+   REQUIREMENTS CARD
+========================= */
+
+.requirements-card {
+    margin-top: 46px;
+    border: 1px solid #e2e5ea;
+    border-radius: 13px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.card-header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    border-bottom: 1px solid #e3e6eb;
+}
+
+.card-title-section {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.card-title-section h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.card-title-section lightning-icon {
+    --slds-c-icon-color-foreground-default: #2458aa;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.requirements-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.requirements-table th {
+    height: 61px;
+    padding: 0 16px;
+    text-align: left;
+    font-size: 15px;
+    border-bottom: 1px solid #e1e4e9;
+    white-space: nowrap;
+}
+
+.requirements-table td {
+    padding: 25px 16px;
+    font-size: 15px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+
+.requirements-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.requirement-name {
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.description {
+    max-width: 260px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 110px;
+    padding: 8px 13px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.not-started-status {
+    background: #f2f4f7;
+    color: #394353;
+}
+
+.progress-status {
+    background: #fff6dc;
+    color: #c17c00;
+}
+
+.completed-status {
+    background: #e8f7eb;
+    color: #168137;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.action-button {
+    min-width: 137px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.start-button {
+    background: #2057ae;
+    color: #ffffff;
+}
+
+.start-button lightning-icon {
+    --slds-c-icon-color-foreground-default: #ffffff;
+}
+
+.complete-button {
+    background: #149447;
+    color: #ffffff;
+    min-width: 130px;
+}
+
+.complete-button lightning-icon {
+    --slds-c-icon-color-foreground-default: #ffffff;
+}
+
+.completed-button {
+    background: #e6e6e6;
+    color: #777777;
+    cursor: default;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-section {
+    min-height: 200px;
+    position: relative;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-section {
+    padding: 30px;
+    text-align: center;
+    color: #ba0517;
+    background: #fff5f5;
+}
+
+
+/* =========================
+   NO RECORDS
+========================= */
+
+.no-records {
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #687385;
+}
+
+.no-records p {
+    margin-top: 12px;
+}
+
+
+/* =========================
+   CARD FOOTER
+========================= */
+
+.card-footer {
+    min-height: 67px;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #626b78;
+    font-size: 14px;
+}
+
+
+/* =========================
+   PAGE FOOTER
+========================= */
+
+.page-footer {
+    margin-top: 55px;
+    min-height: 70px;
+    background: #f7f9fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media screen and (max-width: 700px) {
+
+    .top-header {
+        padding: 0 20px;
+    }
+
+    .user-section > span {
+        display: none;
+    }
+
+    .welcome-card {
+        padding: 25px;
+    }
+
+    .welcome-icon {
+        display: none;
+    }
+
+    .welcome-content {
+        margin-left: 0;
+    }
+
+    .requirements-table {
+        min-width: 1000px;
+    }
+
+    .main-container {
+        padding: 0 10px;
+    }
+}

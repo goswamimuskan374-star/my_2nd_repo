@@ -1,0 +1,261 @@
+<template>
+
+    <!-- Loading Spinner -->
+    <template if:true={isLoading}>
+        <lightning-spinner
+            alternative-text="Loading..."
+            size="medium"
+            variant="brand">
+        </lightning-spinner>
+    </template>
+
+    <lightning-card title="Lead & Account Directory" icon-name="standard:account">
+
+        <div class="slds-p-around_medium">
+
+            <lightning-layout multiple-rows>
+
+                <!-- ========================= -->
+                <!-- LEAD SECTION -->
+                <!-- ========================= -->
+
+                <lightning-layout-item
+                    size="6"
+                    padding="around-small">
+
+                    <lightning-card
+                        title="Lead Records"
+                        icon-name="standard:lead">
+
+                        <div class="slds-p-around_medium">
+
+                            <lightning-layout vertical-align="end">
+
+                                <lightning-layout-item size="8">
+
+                                    <lightning-input
+                                        type="search"
+                                        label="Search Lead"
+                                        placeholder="Search by Name, Company, Email..."
+                                        onkeyup={handleLeadSearch}>
+                                    </lightning-input>
+
+                                </lightning-layout-item>
+
+                                <lightning-layout-item
+                                    size="4"
+                                    class="slds-text-align_right slds-p-top_large">
+
+                                    <lightning-button
+                                        label="Refresh"
+                                        icon-name="utility:refresh"
+                                        onclick={handleLeadRefresh}>
+                                    </lightning-button>
+
+                                </lightning-layout-item>
+
+                            </lightning-layout>
+
+                            <div class="slds-m-top_medium">
+
+                                <lightning-badge
+                                    label={totalLeadRecords}>
+                                </lightning-badge>
+
+                                <span class="slds-m-left_small slds-text-title_bold">
+                                    Total Lead Records
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div style="height:500px;">
+
+                            <lightning-datatable
+                                key-field="Id"
+                                data={filteredLeads}
+                                columns={leadColumns}
+                                sorted-by={leadSortBy}
+                                sorted-direction={leadSortDirection}
+                                onsort={doLeadSorting}
+                                onrowaction={handleLeadRowAction}
+                                hide-checkbox-column>
+                            </lightning-datatable>
+
+                        </div>
+
+                    </lightning-card>
+
+                </lightning-layout-item>
+
+                <!-- ========================= -->
+                <!-- ACCOUNT SECTION START -->
+                <!-- ========================= -->
+                                <lightning-layout-item
+                    size="6"
+                    padding="around-small">
+
+                    <lightning-card
+                        title="Account Records"
+                        icon-name="standard:account">
+
+                        <div class="slds-p-around_medium">
+
+                            <lightning-layout vertical-align="end">
+
+                                <lightning-layout-item size="8">
+
+                                    <lightning-input
+                                        type="search"
+                                        label="Search Account"
+                                        placeholder="Search by Name, Phone, Industry..."
+                                        onkeyup={handleAccountSearch}>
+                                    </lightning-input>
+
+                                </lightning-layout-item>
+
+                                <lightning-layout-item
+                                    size="4"
+                                    class="slds-text-align_right slds-p-top_large">
+
+                                    <lightning-button
+                                        label="Refresh"
+                                        icon-name="utility:refresh"
+                                        onclick={handleAccountRefresh}>
+                                    </lightning-button>
+
+                                </lightning-layout-item>
+
+                            </lightning-layout>
+
+                            <div class="slds-m-top_medium">
+
+                                <lightning-badge
+                                    label={totalAccountRecords}>
+                                </lightning-badge>
+
+                                <span class="slds-m-left_small slds-text-title_bold">
+                                    Total Account Records
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <div style="height:500px;">
+
+                            <lightning-datatable
+                                key-field="Id"
+                                data={filteredAccounts}
+                                columns={accountColumns}
+                                sorted-by={accountSortBy}
+                                sorted-direction={accountSortDirection}
+                                onsort={doAccountSorting}
+                                onrowaction={handleAccountRowAction}
+                                hide-checkbox-column>
+                            </lightning-datatable>
+
+                        </div>
+
+                    </lightning-card>
+
+                </lightning-layout-item>
+
+            </lightning-layout>
+
+        </div>
+
+    </lightning-card>
+
+    <!-- ========================= -->
+    <!-- LEAD VIEW MODAL -->
+    <!-- ========================= -->
+
+    <template if:true={showLeadModal}>
+
+        <section role="dialog"
+                 tabindex="-1"
+                 class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">
+                        Lead Details
+                    </h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_large">
+
+                    <p><b>Name :</b> {selectedLead.Name}</p>
+                    <p><b>Company :</b> {selectedLead.Company}</p>
+                    <p><b>Status :</b> {selectedLead.Status}</p>
+                    <p><b>Phone :</b> {selectedLead.Phone}</p>
+                    <p><b>Email :</b> {selectedLead.Email}</p>
+
+                </div>
+
+                <footer class="slds-modal__footer">
+
+                    <lightning-button
+                        label="Close"
+                        onclick={closeLeadModal}>
+                    </lightning-button>
+
+                </footer>
+
+            </div>
+
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+
+    </template>
+
+    <!-- ========================= -->
+    <!-- ACCOUNT VIEW MODAL -->
+    <!-- ========================= -->
+
+    <template if:true={showAccountModal}>
+
+        <section role="dialog"
+                 tabindex="-1"
+                 class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">
+                        Account Details
+                    </h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_large">
+
+                    <p><b>Name :</b> {selectedAccount.Name}</p>
+                    <p><b>Phone :</b> {selectedAccount.Phone}</p>
+                    <p><b>Industry :</b> {selectedAccount.Industry}</p>
+                    <p><b>Website :</b> {selectedAccount.Website}</p>
+                    <p><b>Type :</b> {selectedAccount.Type}</p>
+
+                </div>
+
+                <footer class="slds-modal__footer">
+
+                    <lightning-button
+                        label="Close"
+                        onclick={closeAccountModal}>
+                    </lightning-button>
+
+                </footer>
+
+            </div>
+
+        </section>
+
+        <div class="slds-backdrop slds-backdrop_open"></div>
+
+    </template>
+
+</template>

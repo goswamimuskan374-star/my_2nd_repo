@@ -1,0 +1,76 @@
+<template>
+    <lightning-quick-action-panel header={title}>
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Processing" size="medium"></lightning-spinner>
+        </template>
+
+        <div class="modal-body">
+            <section class="action-section">
+                <div class="section-header">
+                    <h2>Unlinked Records</h2>
+                    <lightning-button
+                        label="Link"
+                        variant="brand"
+                        onclick={handleLink}
+                        disabled={disableLink}>
+                    </lightning-button>
+                </div>
+
+                <div class="datatable-shell">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={unlinkedRecords}
+                        columns={columns}
+                        onrowselection={handleUnlinkedSelection}>
+                    </lightning-datatable>
+                </div>
+            </section>
+
+            <section class="action-section">
+                <div class="section-header">
+                    <h2>Linked Records</h2>
+                    <lightning-button
+                        label="Unlink"
+                        variant="neutral"
+                        onclick={handleUnlink}
+                        disabled={disableUnlink}>
+                    </lightning-button>
+                </div>
+
+                <div class="datatable-shell">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={linkedRecords}
+                        columns={columns}
+                        onrowselection={handleLinkedSelection}>
+                    </lightning-datatable>
+                </div>
+            </section>
+
+            <section class="action-section">
+                <div class="section-header">
+                    <h2>Delete Linked Records</h2>
+                    <lightning-button
+                        label="Delete"
+                        variant="destructive"
+                        onclick={handleDelete}
+                        disabled={disableDelete}>
+                    </lightning-button>
+                </div>
+
+                <div class="datatable-shell">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={deleteRecords}
+                        columns={columns}
+                        onrowselection={handleDeleteSelection}>
+                    </lightning-datatable>
+                </div>
+            </section>
+        </div>
+
+        <div slot="footer">
+            <lightning-button label="Close" onclick={handleClose}></lightning-button>
+        </div>
+    </lightning-quick-action-panel>
+</template>

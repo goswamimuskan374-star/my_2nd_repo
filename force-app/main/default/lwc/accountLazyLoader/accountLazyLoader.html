@@ -1,0 +1,47 @@
+<template>
+    <lightning-card title="Accounts">
+
+        <div class="account-container" onscroll={handleScroll}>
+
+            <template for:each={accounts} for:item="account">
+                <div key={account.Id} class="account-card">
+
+                    <div class="account-name">
+                        {account.Name}
+                    </div>
+
+                    <div class="account-detail">
+                        Phone: {account.Phone}
+                    </div>
+
+                    <div class="account-detail">
+                        Website: {account.Website}
+                    </div>
+
+                </div>
+            </template>
+
+            <!-- Loading Spinner -->
+            <template if:true={isLoading}>
+                <div class="loading-container">
+
+                    <lightning-spinner
+                        alternative-text="Loading Accounts"
+                        size="medium">
+                    </lightning-spinner>
+
+                    <p>Loading next 10 accounts...</p>
+
+                </div>
+            </template>
+
+            <template if:true={allLoaded}>
+                <div class="end-message">
+                    All accounts loaded.
+                </div>
+            </template>
+
+        </div>
+
+    </lightning-card>
+</template>
